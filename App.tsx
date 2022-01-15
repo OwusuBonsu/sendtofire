@@ -20,8 +20,64 @@ import firestore from '@react-native-firebase/firestore';
 /* Permission options */
 const permissions = {
   permissions: {
-    read: [AppleHealthKit.Constants.Permissions.HeartRate,
-    AppleHealthKit.Constants.Permissions.Steps],
+    read: [
+      //Characteristics
+      AppleHealthKit.Constants.Permissions.HeartRate,
+      AppleHealthKit.Constants.Permissions.Steps,
+      AppleHealthKit.Constants.Permissions.Height,
+      AppleHealthKit.Constants.Permissions.Weight,
+      AppleHealthKit.Constants.Permissions.BiologicalSex,
+      AppleHealthKit.Constants.Permissions.BloodType,
+      AppleHealthKit.Constants.Permissions.WaistCircumference,
+
+      //Body
+      AppleHealthKit.Constants.Permissions.BodyMass,
+      AppleHealthKit.Constants.Permissions.BodyFatPercentage,
+      AppleHealthKit.Constants.Permissions.BodyMassIndex,
+      AppleHealthKit.Constants.Permissions.LeanBodyMass,
+
+      //Hearing
+      AppleHealthKit.Constants.Permissions.EnvironmentalAudioExposure,
+      AppleHealthKit.Constants.Permissions.HeadphoneAudioExposure,
+
+      //Fitness
+      AppleHealthKit.Constants.Permissions.Steps,
+      AppleHealthKit.Constants.Permissions.DistanceWalkingRunning,
+      AppleHealthKit.Constants.Permissions.DistanceCycling,
+      AppleHealthKit.Constants.Permissions.DistanceSwimming,
+      AppleHealthKit.Constants.Permissions.BasalEnergyBurned,
+      AppleHealthKit.Constants.Permissions.ActiveEnergyBurned,
+      AppleHealthKit.Constants.Permissions.FlightsClimbed,
+      AppleHealthKit.Constants.Permissions.NikeFuel,
+      AppleHealthKit.Constants.Permissions.AppleStandTime,
+      AppleHealthKit.Constants.Permissions.AppleExerciseTime,
+
+      //Vitals
+      AppleHealthKit.Constants.Permissions.HeartRate,
+      AppleHealthKit.Constants.Permissions.WalkingHeartRateAverage,
+      AppleHealthKit.Constants.Permissions.RestingHeartRate,
+      AppleHealthKit.Constants.Permissions.HeartRateVariability,
+      AppleHealthKit.Constants.Permissions.HeartbeatSeries,
+      AppleHealthKit.Constants.Permissions.Vo2Max,
+      AppleHealthKit.Constants.Permissions.BodyTemperature,
+      AppleHealthKit.Constants.Permissions.BloodPressureDiastolic,
+      AppleHealthKit.Constants.Permissions.BloodPressureSystolic,
+      AppleHealthKit.Constants.Permissions.RespiratoryRate,
+      AppleHealthKit.Constants.Permissions.OxygenSaturation,
+      AppleHealthKit.Constants.Permissions.Electrocardiogram,
+
+      //sleep
+      AppleHealthKit.Constants.Permissions.SleepAnalysis,
+
+      //workouts
+      AppleHealthKit.Constants.Permissions.MindfulSession,
+      AppleHealthKit.Constants.Permissions.Workout,
+
+      //Lab and test results
+      AppleHealthKit.Constants.Permissions.BloodAlcoholContent,
+
+      //New Invoke stuff
+    ],
     write: [AppleHealthKit.Constants.Permissions.Steps],
   },
 } as HealthKitPermissions;
@@ -62,26 +118,25 @@ export default function App() {
 
   let options = {
     date: new Date().toISOString(), // optional; default now
-    includeManuallyAdded: false // optional: default true
-};
+    includeManuallyAdded: false, // optional: default true
+  };
 
-  const handleGetData = () => {  
-
+  const handleGetData = () => {
     AppleHealthKit.getStepCount(
-  (options),
-  (err: Object, results: HealthValue) => {
-    if (err) {
-      return
-    }
+      options,
+      (err: Object, results: HealthValue) => {
+        if (err) {
+          return;
+        }
         getSteps(results);
-    console.log(results)
-  },
-)
-  }
+        console.log(results);
+      },
+    );
+  };
 
   const sendToFirebase = () => {
-    firestore().collection('Playground').add({value: steps.value})
-  }
+    firestore().collection('Playground').add({value: steps.value});
+  };
 
   return (
     <>
@@ -95,13 +150,11 @@ export default function App() {
               <Text style={styles.sectionTitle}>
                 Invoke Data Tracking Thingy
               </Text>
-              <Text onPress={handleGetData}>
-                Press me to get step count
-              </Text>
+              <Text onPress={handleGetData}>Press me to get step count</Text>
               <Text style={styles.sectionDescription}>
                 {JSON.stringify(authStatus, null, 2)}
               </Text>
-               <Text style={styles.sectionDescription}>
+              <Text style={styles.sectionDescription}>
                 {JSON.stringify(steps, null, 2)}
               </Text>
               <Text onPress={sendToFirebase}>
