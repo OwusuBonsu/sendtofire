@@ -1214,6 +1214,11 @@
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
+"@react-native-firebase/auth@^14.5.0":
+  version "14.5.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-14.5.0.tgz#890b9cf4ae8eef4b6fc4cb5f762d54144df70ac8"
+  integrity sha512-4Gu7VjxLxa7x/0dcfhT/woUCPIWq2jzLaIAca2wrg7xS3x6egFIXC/GiVGJ3WPD9pe0XJDi/lcISR+F8j2Gc2w==
+
 "@react-native-firebase/firestore@^14.1.0":
   version "14.1.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-14.1.0.tgz#012b50b9dd3b9686ae44d850b1dde4bcc316750a"
@@ -5805,8 +5810,10 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-native-health@../:
+react-native-health@^1.12.0:
   version "1.12.0"
+  resolved "https://registry.yarnpkg.com/react-native-health/-/react-native-health-1.12.0.tgz#d637be8ecebe4cd7ea05d74d1a3d07a13b5ceb91"
+  integrity sha512-2iLmFy+jyqIhuOKOR3U/MYmdhMDoFDYf1ploblgG2ufDsnAWLd7FMO9D6OMQvzwXtd9VQvoAfsjb5UicsqY8Yw==
   dependencies:
     "@expo/config-plugins" "^2.0.0"
 
